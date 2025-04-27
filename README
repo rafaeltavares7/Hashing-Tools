@@ -1,0 +1,52 @@
+1. Script: identify_hash.sh
+
+Descrição:
+Ferramenta para análise e identificação de hashes criptográficos. Detecta o tipo de hash com base no comprimento e caracteres, além de fornecer estatísticas sobre sua composição (números, letras).
+
+Funcionalidades:
+   Identificação Automática
+   Reconhece algoritmos comuns (MD5, SHA1, SHA256, etc.) pelo tamanho do hash.
+   Exemplo: Hashes de 32 caracteres → MD5 ou SHAKE128.
+
+Análise de Composição
+   Conta números e letras no hash.
+   Saída colorida para melhor visualização.
+   Suporte a Múltiplos Algoritmos
+   Inclui SHA-3, BLAKE2, B2 e outros.
+
+uso: ./identify_hash.sh 5f4dcc3b5aa765d61d8327deb882cf99
+Observação: Não realiza cracking, apenas identifica possíveis tipos de hash.
+
+
+
+2. Script: hash_crack.sh
+
+Descrição:
+Ferramenta avançada para quebra de hashes e descriptografia via força bruta usando wordlists. Suporta 20+ algoritmos (incluindo SHA, BLAKE, GPG, ZIP, Base64 e hexadecimal).
+
+Funcionalidades:
+   Cracking de Hashes
+   Suporte para MD5, SHA1, SHA256, SHA3-512, BLAKE2, RIPEMD-160, etc.
+   Compara hashes gerados em tempo real com a wordlist.
+   Descriptografia de Arquivos
+       GPG: Quebra senhas de arquivos criptografados.
+       ZIP: Extrai arquivos protegidos por senha (via 7z).
+   Decodificação
+   Base64 e Hexadecimal (sem necessidade de wordlist).
+
+Interface Amigável
+   Menu de ajuda (-h) listando todos os argumentos suportados.
+   Saída colorida indicando sucesso/falha.
+
+Quebra de SHA1: ./hash_crack.sh -sha1 a94a8fe5ccb19ba61c4c0873d391e987982fbbd3 wordlist.txt  
+Descriptografia GPG: ./hash_crack.sh -gpg arquivo.criptografado.gpg wordlist.txt  
+Decodificação Base64: ./hash_crack.sh -base64 SGVsbG8gV29ybGQh
+
+Tecnologias Utilizadas:
+   openssl (para hashing).
+   gpg e 7z (para descriptografia).
+   xxd (hexadecimal).
+
+Observações:
+   Eficiência depende da qualidade da wordlist.
+   Para hashes complexos (ex: SHA512), use wordlists grandes (ex: rockyou.txt).
